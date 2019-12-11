@@ -28,14 +28,4 @@ class ExceptionHandlingAdvice {
     fun handleAlreadyExistsEntity(e: EntityAlreadyExistsException): ResponseEntity<*> {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(e.message)
     }
-
-    @ExceptionHandler(OrderAlreadyExistsException::class)
-    fun handleAlreadyExistsOrderNumber(e: OrderAlreadyExistsException): ResponseEntity<*> {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(e.message)
-    }
-
-    @ExceptionHandler(OrderWithNumberNotFoundException::class)
-    fun handleNotFoundOrder(e: OrderWithNumberNotFoundException): ResponseEntity<*> {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.message)
-    }
 }
