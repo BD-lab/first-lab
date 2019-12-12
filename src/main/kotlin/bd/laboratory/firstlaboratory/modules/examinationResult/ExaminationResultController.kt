@@ -17,4 +17,10 @@ class ExaminationResultController(
     @ResponseStatus(HttpStatus.CREATED)
     fun addExaminations(@RequestBody orderDTO: OrderDTO) =
             examinationResultService.addExaminations(orderDTO)
+
+    @PutMapping("/{examinationResultId}")
+    fun updatePatientValue(
+            @PathVariable examinationResultId: Int,
+            @RequestParam(name = "patientValue") patientValue: Double
+    ): ExaminationResultDTO = examinationResultService.updatePatientValue(examinationResultId, patientValue)
 }

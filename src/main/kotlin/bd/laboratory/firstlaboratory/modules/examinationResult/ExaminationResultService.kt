@@ -1,6 +1,8 @@
 package bd.laboratory.firstlaboratory.modules.examinationResult
 
+import bd.laboratory.firstlaboratory.modules.infrastructure.exceptions.EntityNotFoundException
 import bd.laboratory.firstlaboratory.modules.order.OrderDTO
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
@@ -15,4 +17,16 @@ class ExaminationResultService(
             examinationResultRepository.save(examResult)
         }
     }
+
+    fun updatePatientValue(examinationResultId: Int, patientValue: Double): ExaminationResultDTO {
+        val updatedExaminationResult = findExaminationResultOrThrow(examinationResultId).apply {
+            this.patientValue = patientValue
+            this.isDone = true
+        }
+        return ExaminationResultDTO(examinationResultRepository.save(updatedExaminationResult))
+    }
+
+    private fun findExaminationResultOrThrow(examinationResultId: Int): ExaminationResult =
+            examinationResultRepository.findByIdOrNull(examinationResultId)
+                    ?: throw EntityNotFoundException(ExaminationResult::class, examinationResultId)
 }

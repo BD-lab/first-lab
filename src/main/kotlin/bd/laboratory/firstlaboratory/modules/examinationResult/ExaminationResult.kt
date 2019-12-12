@@ -17,11 +17,11 @@ class ExaminationResult(
 
         val unit: String,
 
-        val patientValue: Double? = null,
+        var patientValue: Double? = null,
 
         val minNormValue: Double,
 
         val maxNormValue: Double,
 
-        val isDone: Boolean = false
+        var isDone: Boolean = false
 )
