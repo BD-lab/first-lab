@@ -19,13 +19,14 @@ object ExaminationResultMapper {
         return examinations.map { examInfo ->
             val (unit, minNormValue, maxNormValue) = examInfo.type.getReferenceRange()
             ExaminationResult(
+                    id = examInfo.id,
                     orderNumber = order.orderNumber,
                     examinationType = examInfo.type,
                     unit = unit,
                     patientValue = null,
                     minNormValue = minNormValue,
                     maxNormValue = maxNormValue,
-                    isDone = false
+                    isDone = examInfo.isDone
             )
         }
     }
