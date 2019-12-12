@@ -11,8 +11,8 @@ class ExaminationResultService(
             examinationResultRepository.findAllByOrderNumber(orderNumber).map { ExaminationResultDTO(it) }
 
     fun addExaminations(order: OrderDTO) {
-        order.examinations.forEach { examInfo ->
-            TODO()
+        ExaminationResultMapper.mapOrderToExaminationResults(order).forEach { examResult ->
+            examinationResultRepository.save(examResult)
         }
     }
 }

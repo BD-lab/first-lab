@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/examinationResults")
+@RequestMapping("/examinations")
 class ExaminationResultController(
         private val examinationResultService: ExaminationResultService
 ) {
