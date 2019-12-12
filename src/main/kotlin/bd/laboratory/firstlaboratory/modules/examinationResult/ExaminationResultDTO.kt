@@ -1,15 +1,12 @@
 package bd.laboratory.firstlaboratory.modules.examinationResult
 
 import bd.laboratory.firstlaboratory.modules.infrastructure.exceptions.EntityIdNullException
-import javax.persistence.EnumType
-import javax.persistence.Enumerated
 
 data class ExaminationResultDTO(
         val id: Int,
 
         val orderNumber: String,
 
-        @Enumerated(EnumType.STRING)
         val examinationType: ExaminationType,
 
         val unit: String,
