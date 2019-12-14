@@ -1,5 +1,6 @@
 package bd.laboratory.firstlaboratory.modules.examinationResult
 
+import bd.laboratory.firstlaboratory.modules.infrastructure.exceptions.EntityIdNullException
 import bd.laboratory.firstlaboratory.modules.infrastructure.exceptions.EntityNotFoundException
 import bd.laboratory.firstlaboratory.modules.order.OrderDTO
 import org.springframework.data.repository.findByIdOrNull
@@ -14,7 +15,8 @@ class ExaminationResultService(
 
     fun addExaminations(order: OrderDTO) {
         ExaminationResultMapper.mapOrderToExaminationResults(order).forEach { examResult ->
-            examinationResultRepository.save(examResult)
+            if (!examinationResultExistsById(examResult.id))
+                examinationResultRepository.save(examResult)
         }
     }
 
@@ -29,4 +31,10 @@ class ExaminationResultService(
     private fun findExaminationResultOrThrow(examinationResultId: Int): ExaminationResult =
             examinationResultRepository.findByIdOrNull(examinationResultId)
                     ?: throw EntityNotFoundException(ExaminationResult::class, examinationResultId)
+
+    private fun examinationResultExistsById(examinationResultId: Int?): Boolean =
+            examinationResultRepository.existsById(
+                    examinationResultId ?: throw EntityIdNullException(ExaminationResult::class)
+            )
+
 }

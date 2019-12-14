@@ -29,15 +29,4 @@ data class ExaminationResultDTO(
             maxNormValue = examinationResult.maxNormValue,
             isDone = examinationResult.isDone
     )
-
-    fun toExaminationResultEntity() = ExaminationResult(
-            id = this.id,
-            orderNumber = this.orderNumber,
-            examinationType = this.examinationType,
-            unit = this.unit,
-            patientValue = this.patientValue,
-            minNormValue = this.minNormValue,
-            maxNormValue = this.maxNormValue,
-            isDone = this.isDone
-    )
 }
