@@ -6,5 +6,5 @@ class ExaminationInfoDTO(
         val id: Int,
         val laboratoryId: Int,
         val type: ExaminationType,
-        val isDone: Boolean
+        val isDone: Boolean = false
 )
