@@ -12,8 +12,12 @@ class ExaminationResultController(
     @GetMapping("/orderNumbers")
     fun getAllOrderNumbers(): List<String> = examinationResultService.getAllOrderNumbers()
 
+    @GetMapping("/order")
+    fun getAllResultsForOrder(@RequestParam("orderNumber") orderNumber: String): List<ExaminationResultDTO> =
+            examinationResultService.getAllResultsForOrder(orderNumber)
+
     @PostMapping("/order")
-    fun getAllResultsForOrder(@RequestBody orderNumber: String): List<ExaminationResultDTO> =
+    fun clinicGetAllResultsForOrder(@RequestBody orderNumber: String): List<ExaminationResultDTO> =
             examinationResultService.getAllResultsForOrder(orderNumber)
 
     @PostMapping
