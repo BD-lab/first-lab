@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*
 class ExaminationResultController(
         private val examinationResultService: ExaminationResultService
 ) {
+    @GetMapping("/orderNumbers")
+    fun getAllOrderNumbers(): List<String> = examinationResultService.getAllOrderNumbers()
+
     @PostMapping("/order")
     fun getAllResultsForOrder(@RequestBody orderNumber: String): List<ExaminationResultDTO> =
             examinationResultService.getAllResultsForOrder(orderNumber)

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service
 class ExaminationResultService(
         private val examinationResultRepository: ExaminationResultRepository
 ) {
+    fun getAllOrderNumbers(): List<String> = examinationResultRepository.findDistinctOrderNumbers()
+
     fun getAllResultsForOrder(orderNumber: String): List<ExaminationResultDTO> =
             examinationResultRepository.findAllByOrderNumber(orderNumber).map { ExaminationResultDTO(it) }
 
@@ -36,5 +38,4 @@ class ExaminationResultService(
             examinationResultRepository.existsById(
                     examinationResultId ?: throw EntityIdNullException(ExaminationResult::class)
             )
-
 }
